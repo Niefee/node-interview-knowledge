@@ -1,0 +1,12 @@
+{
+  "name": "node-interview-knowledge",
+  "version": "0.1.0",
+  "repository": "",
+  "scripts": {
+    "serve": "docsify serve ."
+  },
+  "license": "MIT",
+  "dependencies": {
+    "docsify-cli": "^3.0.1"
+  }
+}
