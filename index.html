@@ -29,15 +29,22 @@
 </body>
 <script>
   window.$docsify = {
-    name: 'Node.js Interview',
+    name: 'Node Interview knowledge',
     auto2top: true,
     loadNavbar: true,
-    repo: 'Niefee/node-interview',
+    repo: 'Niefee/node-interview-knowledge',
     loadSidebar: true,
-    loadSidebar: 'sections/zh-cn/summary.md',
+    loadSidebar: 'sections/summary.md',
     maxLevel: 4,
     subMaxLevel: 4,
   }
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script type="text/javascript">
+  window.onload = function () {
+    var cornerLink = document.getElementsByClassName('github-corner')[0];
+    console.log(cornerLink)
+    cornerLink.setAttribute('target', '_blank');
+  };
+</script>
 </html>
