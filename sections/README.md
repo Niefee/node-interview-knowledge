@@ -4,7 +4,7 @@
 
 ## [Js 基础问题](/sections/common.md)
 
-* [`[Basic]` 类型判断](/sections/common.md#类型判断)
+* [`[Basic]` 数据类型](/sections/common.md#数据类型)
 * [`[Basic]` 作用域](/sections/common.md#作用域)
 * [`[Basic]` 引用传递](/sections/common.md#引用传递)
 * [`[Basic]` 内存释放](/sections/common.md#内存释放)
