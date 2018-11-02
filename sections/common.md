@@ -1,14 +1,14 @@
 # JavaScript 基础问题
 
-* [`[Basic]` 类型判断](/sections/common.md#类型判断)
+* [`[Basic]` 数据类型](/sections/common.md#数据类型)
 * [`[Basic]` 作用域](/sections/common.md#作用域)
 * [`[Basic]` 引用传递](/sections/common.md#引用传递)
 * [`[Basic]` 内存释放](/sections/common.md#内存释放)
 * [`[Basic]` ES6 新特性](/sections/common.md#es6-新特性)
 
-## 类型判断
+## 数据类型
 
-
+在 JavaScript 最初的实现中，JavaScript 中的值是由一个表示类型的标签和实际数据值表示的。
 JavaScript包含七种数据类型，分别为`number`、`string`、`boolean`、`undefined`、`null`、`object`和`symbol`(ES6新增的)。
 
 `number`、`string`、`boolean`、`symbol`合称为原始类型（primitive type）数据。
@@ -20,3 +20,132 @@ JavaScript包含七种数据类型，分别为`number`、`string`、`boolean`、
  - 狭义的对象（object）
  - 数组（array）
  - 函数（function）
+
+### 判断数据类型
+
+常用的三种方法：
+
+ - `typeof`运算符
+ - `instanceof`运算符
+ - `Object.prototype.toString`方法
+
+#### typeof
+
+ ```js
+typeof 123 // "number"
+typeof NaN // "number"
+
+typeof "abc" // "string"  
+
+typeof true // "boolean"  
+
+typeof function foo() {} // "function"  
+
+typeof undefined // "undefined"  
+
+typeof Symbol('abc') // "symbol"
+```
+> 基本类型与函数都能直接返回数据类型的字符串。
+
+```js
+typeof {a: 1} // "object" 
+typeof [1, 2] // "object" 
+typeof null // "object"
+ ```
+
+js 在底层存储变量的时候，会在变量的机器码的低位1-3位存储其类型信息
+
+ - 000：对象
+ - 010：浮点数
+ - 100：字符串
+ - 110：布尔
+ - 1：整数
+
+`null`所有机器码均为0，所以用`typeof`判断返回`object`。
+`undefined`用 −2^30 整数来表示
+
+#### instanceof
+
+`instanceof`的原理是检查右边构造函数的prototype属性，是否在左边对象的原型链上。也就是判断一个实例是否是其父类型或者祖先类型的实例。
+
+实现原理大概如下：
+
+```js
+function instance_of(L, R) {//L 表示左表达式，R 表示右表达式
+ var O = R.prototype;// 取 R 的显示原型
+ L = L.__proto__;// 取 L 的隐式原型
+ while (true) { 
+   if (L === null) 
+     return false; 
+   if (O === L)// 这里重点：当 O 严格等于 L 时，返回 true 
+     return true; 
+   L = L.__proto__; 
+ } 
+}
+```
+> 参考：https://www.ibm.com/developerworks/cn/web/1306_jiangjj_jsinstanceof/
+
+示例：
+```js
+'abc' instanceof String; // false, 字符串不是一个实例
+123 instanceof Number; // false
+true instanceof Boolean; // false
+
+// 数字、布尔值同样效果
+(new String('abc')) instanceof String; // true
+(new String('abc')) instanceof Object; // true
+String instanceof Object; // true
+
+let person = function () {};
+let Amy = new person();
+Amy instanceof person; // true
+
+[1,2] instanceof Array; // true
+[1,2] instanceof Object; // true
+```
+
+简单来说，`instanceof` 的作用是检测一个对象是否是另个对象 `new` 出来的实例。牵涉更深一层原理，可参考 [js中\_\_proto\_\_和prototype的区别和关系？](https://www.zhihu.com/question/34183746/answer/59043879)
+
+> 参考： https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof
+
+#### Object.prototype.toString
+
+调用`Object.prototype.toString.call(arguments)`会以`[object xxx]`返回参数的数据类型，`xxx`为类型名称。
+
+```js
+Object.prototype.toString.call(123) // "[object Number]"
+
+Object.prototype.toString.call('1bc') // "[object String]"
+
+Object.prototype.toString.call({a:'a'}) // "[object Object]"
+
+Object.prototype.toString.call([1,'a', true]) // "[object Array]"
+
+Object.prototype.toString.call(true) // "[object Boolean]"
+
+Object.prototype.toString.call(() => {}) // "[object Function]"
+
+Object.prototype.toString.call(null) // "[object Null]"
+
+Object.prototype.toString.call(undefined) // "[object Undefined]"
+
+Object.prototype.toString.call(Symbol(1)) // "[object Symbol]"
+
+Object.prototype.toString.call(new Date) // "[object Date]"
+
+Object.prototype.toString.call(/\w+/ig) // "[object RegExp]"
+
+Object.prototype.toString.call(new Error) // "[object Error]"
+```
+
+### 作用域
+
+`JavaScript`的作用域有三个：
+
+ - 全局作用域
+ - 局部作用域
+ - 块级作用域
+
+在函数定义之外声明的变量是`全局变量`，它的值可在整个程序中访问和修改。在函数定义内声明的变量是`局部变量`。  
+
+ES6新增`let`和`const`命令来声明变量。但是所声明的变量，只在命令所在的代码块内有效。
