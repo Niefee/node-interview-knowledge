@@ -1,6 +1,6 @@
 # 饿了么 Node.js 面试知识学习
 
-[饿了么 Node.js 面试](https://elemefe.github.io/node-interview/#/sections/)，建议优先阅读原版教程内容。
+[饿了么 Node.js 面试](https://elemefe.github.io/node-interview/#/sections/zh-cn/)，建议优先阅读原版教程内容。
 
 ## [Js 基础问题](/sections/common.md)
 
