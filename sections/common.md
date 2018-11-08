@@ -146,6 +146,151 @@ Object.prototype.toString.call(new Error) // "[object Error]"
  - 局部作用域
  - 块级作用域
 
-在函数定义之外声明的变量是`全局变量`，它的值可在整个程序中访问和修改。在函数定义内声明的变量是`局部变量`。  
+#### 全局作用域
 
-ES6新增`let`和`const`命令来声明变量。但是所声明的变量，只在命令所在的代码块内有效。
+在函数定义之外声明的变量是`全局变量`，它的值可在整个程序中访问和修改。
+
+```js
+// 全局变量
+var name = "John";
+ 
+// 全局函数
+function sayhi () {
+    return console.log("Hi!");
+}
+```
+
+#### 局部作用域
+
+在函数定义内声明的变量是`局部变量`。  
+
+```js
+function sayhi () {
+    var saying = "Hi, John.";
+    console.log(saying);
+}
+console.log(saying); // 将抛出异常
+```
+#### 块级作用域
+ES6新增`let`和`const`命令来声明变量。它们所声明的变量，只在命令所在的代码块内有效，这个代码块称为`块级作用域`。
+
+```js
+let x = 1;
+{
+  let x = 2, y=3;
+}
+console.log(x); // 1
+console.log(y); // 报错，在外层没有定义变量y
+```
+
+> `const`同理。
+
+> 参考：
+> 1. https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/block
+> 2. https://msdn.microsoft.com/zh-cn/library/bzt2dkta(v=vs.94).aspx
+
+#### 模块作用域
+
+在`Node.js`中，一个文件可以称为一个模块。每个模块都有各自的作用域，跨模块无法访问。可以通过`require`方法引入这个文件去调用当中作用域的值。或者通过`global`标志变量为全局作用域。
+
+```js
+// 引入文件
+const file = require('./1.js');
+
+// 全局变量
+global.web = "Nodejs";
+```
+
+> 参考： http://nodejs.cn/api/globals.html
+
+## 引用传递
+
+### 堆和栈的概念
+
+内存中存储的区域分为`堆`和`栈`。
+
+> 栈（stack）为自动分配的内存空间，大小固定，它由系统自动释放；
+> 堆（heap）则是动态分配的内存，大小不定也不会自动释放。
+
+```js
+var word = 'hello';
+str[0] = 'y';
+
+console.log(str); // hello，基本数据类型值不可变。
+```
+
+存储在`堆`中的一般是简单的数据段，它们位置存储的就是变量的值。JavaScript中的原始类型数据就是存储在`堆`中。
+
+复合类型数据存储在`栈`中，但会在在`堆`中存储一个指向`栈`的指针。
+
+### 传值与传址
+
+原始类型数据的赋值运算在底层的实现是，新开一段`栈内存`，然后赋值到新栈中。
+
+```js
+var num1 = 10;
+var num2 = num1;
+
+num1 += 5;
+
+console.log(num1); // 15
+console.log(num2); // 20
+```
+
+> 赋值后变量的运算不会影响到原变量。
+
+复合类型数据的赋值运算，是`堆`地址的赋值。新变量的`栈`内存获取的是原变量的`堆`地址。
+
+```js
+var a = {age: 12};
+var b = a;
+
+a.name = 'John'
+
+a.age // 12
+b.age // 12
+b.name // 'John'
+```
+
+> 参考：
+>  1. https://juejin.im/post/59ac1c4ef265da248e75892b 
+>  2. https://segmentfault.com/a/1190000008637489
+
+## 内存释放
+
+不管什么程序语言，内存生命周期基本是一致的：   
+
+1. 分配你所需要的内存
+2. 使用分配到的内存（读、写）
+3. 不需要时将其释放\归还
+
+在C语言中，可以使用`malloc`方法用来申请内存，使用完后，必须自己用`free`方法释放内存。
+但大多数语言提供自动内存管理，这被称为"垃圾回收机制"（garbage collector）。
+
+```js
+var n = 123; // 给数值变量分配内存
+var s = "azerty"; // 给字符串分配内存
+
+// 两个对象被创建，一个作为另一个的属性被引用，另一个被分配给变量o
+// 很显然，没有一个可以被垃圾收集
+var o = { 
+  a: {
+    b:2
+  }
+}; 
+
+var o2 = o; // o2变量是第二个对“这个对象”的引用
+
+o = 1;      // 现在，“这个对象”的原始引用o被o2替换了
+
+var oa = o2.a; // 引用“这个对象”的a属性
+// 现在，“这个对象”有两个引用了，一个是o2，一个是oa
+
+o2 = "yo"; // 最初的对象现在已经是零引用了
+           // 他可以被垃圾回收了
+           // 然而它的属性a的对象还在被oa引用，所以还不能回收
+
+oa = null; // a属性的那个对象现在也是零引用了
+           // 它可以被垃圾回收了
+```
+> 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management
