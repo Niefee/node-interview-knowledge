@@ -11,7 +11,7 @@
 * [`[Basic]` ES6 新特性](/sections/common.md#es6-新特性)
 
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/common.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/common)
 
 ## [模块](/sections/module.md)
 
@@ -20,7 +20,7 @@
 * [`[Basic]` 上下文](/sections/module.md#上下文)
 * [`[Basic]` 包管理](/sections/module.md#包管理)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/module.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/module)
 
 ## [事件/异步](/sections/event-async.md)
 
@@ -30,7 +30,7 @@
 * [`[Point]` 阻塞/异步](/sections/event-async.md#阻塞异步)
 * [`[Point]` 并行/并发](/sections/event-async.md#并行并发)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/event-async.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/event-async)
 
 ## [进程](/sections/process.md)
 
@@ -40,7 +40,7 @@
 * [`[Basic]` 进程间通信](/sections/process.md#进程间通信)
 * [`[Basic]` 守护进程](/sections/process.md#守护进程)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/process.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/process)
 
 
 ## [IO](/sections/io.md)
@@ -53,7 +53,7 @@
 * [`[Doc]` Readline](/sections/io.md#readline)
 * [`[Doc]` REPL](/sections/io.md#repl)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/io.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/io)
 
 ## [Network](/sections/network.md)
 
@@ -64,7 +64,7 @@
 * [`[Doc]` ZLIB (压缩)](/sections/network.md#zlib)
 * [`[Point]` RPC](/sections/network.md#rpc)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/network.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/network)
 
 ## [OS](/sections/os.md)
 
@@ -75,7 +75,7 @@
 * [`[Basic]` 负载](/sections/os.md#负载)
 * [`[Point]` CheckList](/sections/os.md#checklist)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/os.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/os)
 
 ## [错误处理/调试](/sections/error.md)
 
@@ -87,7 +87,7 @@
 * [`[Point]` 内存快照](/sections/error.md#内存快照)
 * [`[Point]` CPU profiling](/sections/error.md#cpu-profiling)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/error.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/error)
 
 ## [测试](/sections/test.md)
 
@@ -98,7 +98,7 @@
 * [`[Basic]` 压力测试](/sections/test.md#压力测试)
 * [`[Doc]` Assert (断言)](/sections/test.md#assert)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/test.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/test)
 
 ## [util](/sections/util.md)
 
@@ -107,7 +107,7 @@
 * [`[Doc]` Utilities (实用函数)](/sections/util.md#util-1)
 * [`[Basic]` 正则表达式](/sections/util.md#正则表达式)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/util.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/util)
 
 ## [存储](/sections/storage.md)
 
@@ -117,7 +117,7 @@
 * [`[Point]` 数据一致性](/sections/storage.md#数据一致性)
 * [`[Point]` 缓存](/sections/storage.md#缓存)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/storage.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/storage)
 
 ## [安全](/sections/security.md)
 
@@ -129,6 +129,6 @@
 * [`[Point]` 中间人攻击](/sections/security.md#中间人攻击)
 * [`[Point]` Sql/Nosql 注入](/sections/security.md#sqlnosql-注入)
 
-> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/security.md)
+> [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/security)
 
 
