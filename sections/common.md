@@ -4,7 +4,7 @@
 * [`[Basic]` 作用域](/sections/common.md#作用域)
 * [`[Basic]` 引用传递](/sections/common.md#引用传递)
 * [`[Basic]` 内存释放](/sections/common.md#内存释放)
-* [`[Basic]` ES6 新特性](/sections/common.md#es6-新特性)
+* [`[Basic]` ES6新特性](/sections/common.md#es6新特性)
 
 ## 数据类型
 
@@ -294,3 +294,11 @@ oa = null; // a属性的那个对象现在也是零引用了
            // 它可以被垃圾回收了
 ```
 > 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management
+
+## ES6新特性
+
+推荐阅读阮一峰的[《ECMAScript 6 入门》](http://es6.ruanyifeng.com)
+
+ES6新特性与浏览器兼容性可视化数据 [http://kangax.github.io/compat-table/es6/](http://kangax.github.io/compat-table/es6/)
+
+ES6特性相关推荐阅读文章目录 [https://www.css88.com/archives/9922](https://www.css88.com/archives/9922)

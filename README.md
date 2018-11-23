@@ -8,7 +8,7 @@
 * [`[Basic]` 作用域](/sections/common.md#作用域)
 * [`[Basic]` 引用传递](/sections/common.md#引用传递)
 * [`[Basic]` 内存释放](/sections/common.md#内存释放)
-* [`[Basic]` ES6 新特性](/sections/common.md#es6-新特性)
+* [`[Basic]` ES6新特性](/sections/common.md#es6新特性)
 
 
 > [原版教程内容](https://elemefe.github.io/node-interview/#/sections/zh-cn/common)
