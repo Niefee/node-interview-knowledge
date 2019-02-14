@@ -122,3 +122,11 @@ child.send('hello world');
 基本使用方法：http://nodejs.cn/api/cluster.html
 
 ## 进程间通信
+
+进程间通信（Inter-process communication, IPC）其实是个很简单的概念，只要你将这个进程的数据传递到另外一个进程就是`IPC`。 
+
+Node.js内置的通信都是在父子进程间进行，如果是非父子进程，可以考虑建立socket服务器进行通信。
+
+> 参考：https://zhuanlan.zhihu.com/p/27069865
+
+## 守护进程
