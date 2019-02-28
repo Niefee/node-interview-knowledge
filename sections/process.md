@@ -130,3 +130,35 @@ Node.js内置的通信都是在父子进程间进行，如果是非父子进程�
 > 参考：https://zhuanlan.zhihu.com/p/27069865
 
 ## 守护进程
+
+"**守护进程**"（daemon）就是一直在后台运行的进程（daemon）。
+
+一般情况，用命令行窗口运行程序，一旦窗口退出，程序也会退出。让程序变成**守护进程**，才能一直运行下去。
+
+借助 clild_process 中的 spawn 即可创建子进程：
+
+```js
+var spawn = require('child_process').spawn;
+var process = require('process');
+
+var p = spawn('node',['b.js'],{
+        detached : true
+    });
+console.log(process.pid, p.pid);
+process.exit(0);
+```
+
+```js
+// b.js
+var http = require('http');
+
+http.createServer(function(req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World');
+}).listen(8000);
+```
+
+在 Windows 上，设置 `options.detached` 为 `true` 可以使子进程在父进程退出后继续运行。
+在非 Windows 平台上，如果 `options.detached` 设为 `true`，则子进程会成为新的进程组和会话的领导者。
+
+> 参考：https://cnodejs.org/topic/57adfadf476898b472247eac
