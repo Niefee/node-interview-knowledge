@@ -120,3 +120,74 @@ console.log(str);  // 好
 
 ## stream
 
+### Readable Stream
+
+`Readable Stream`存在两种模式：
+
+```
+1、流动模式：可读流自动读取数据，通过EventEmitter接口的事件尽快将数据提供给应用。
+
+2、暂停模式：必须显式调用stream.read()方法来从流中读取数据片段。
+```
+
+#### 流动模式
+
+![FlowingMode](../assets/FlowingMode.png)
+```js
+const readable = getReadableStreamSomehow();
+readable.on('data', (chunk) => {
+  console.log(`接收到 ${chunk.length} 个字节的数据`);
+});
+```
+
+数据会先push到缓存池，数据超过`highWaterMark `指定的阈值时，流会暂时停止从底层资源读取数据，直到当前缓冲的数据被消费。
+
+#### 暂停模式
+
+![FlowingMode](../assets/FlowingMode2.png)
+
+```js
+const myReadable = new MyReadable(dataSource);
+myReadable.setEncoding('utf8');
+myReadable.on('readable', () => {});
+```
+监听 `readable` 的回调函数第一个参数不会传递内容，需要我们通过 `myReadable.read()` 主动读取内容。
+
+> http://taobaofed.org/blog/2017/08/31/nodejs-stream/
+
+### Writable Stream
+
+原理与Readable Stream类似，数据流会直接写入资源池，当写入速度比较缓慢或者暂停，数据会进入队列池缓存起来。
+如果连队列池也满了（超过了highWaterMark选项的数值），生产者停止生产。
+当队列释放之后，Writable Stream 会给生产者发送一个 drain 消息，让它恢复生产。
+
+![FlowingMode](../assets/FlowingMode3.png)
+
+> http://nodejs.cn/api/stream.html#stream_class_stream_writable
+
+## console
+
+`console`模块是全局对象，可以直接使用。它是否同步，取决于哪种流以及操作系统。
+
+全局的 `console` 是一个特殊的 `Console`类。其输出发送到 `process.stdout` 和 `process.stderr`，相当于：
+
+```js
+new Console({ stdout: process.stdout, stderr: process.stderr });
+```
+
+`Console` 类可用于创建具有可配置的输出流的简单记录器。
+
+```js
+const output = fs.createWriteStream('./stdout.log');
+const errorOutput = fs.createWriteStream('./stderr.log');
+// 自定义的简单记录器。
+const logger = new Console({ stdout: output, stderr: errorOutput });
+// 像控制台一样使用它。
+const count = 5;
+logger.log('count: %d', count);
+// 在 stdout.log 中: count 5
+```
+
+> 其他的具体方法可以查看文档：http://nodejs.cn/api/console.html
+
+## file
