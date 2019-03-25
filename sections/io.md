@@ -191,3 +191,9 @@ logger.log('count: %d', count);
 > 其他的具体方法可以查看文档：http://nodejs.cn/api/console.html
 
 ## file
+
+在Node中，所有与文件增删改查有关的操作都通过`fs`模块实现。
+
+### 权限位 mode
+
+Node的文件权限有9种，分别是三种角色：文件所有者(自己，owner)，文件所属组(家人，group)，其他用户(陌生人，others)
