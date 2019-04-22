@@ -245,6 +245,86 @@ ax+	| 与 a+ 类似，排他方式打开。
 
 在 NodeJS 中，每操作一个文件，文件描述符是递增的，文件描述符一般从 `3` 开始，因为前面有 `0`、`1`、`2`三个比较特殊的描述符，分别代表 `process.stdin`（标准输入）、`process.stdout`（标准输出）和 `process.stderr`（错误输出）。
 
-> 参考：https://juejin.im/post/5b9768b2e51d450e9942eb98#heading-19
+> 参考：https://juejin.im/post/5b9768b2e51d450e9942eb98#heading-3
 
 > 常用API接口： http://nodejs.cn/api/fs.html
+
+## Readline
+
+`readline` 模块提供了一个接口，用于一次一行地读取可读流（例如 process.stdin）中的数据
+
+```js
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+rl.question('今天天气如何？', (answer) => {
+  // TODO：将答案记录在数据库中。
+  console.log(`答案：${answer}`);
+
+  rl.close();
+});
+```
+> 运行后，可在命令行输入内容，按下回车后执行回调，输入内容作为参数传递。
+
+逐行读取文件流。
+
+```js
+const readline = require('readline');
+const fs = require('fs');
+
+const rl = readline.createInterface({
+  input: fs.createReadStream('sample.txt'),
+  crlfDelay: Infinity
+});
+
+rl.on('line', (line) => {
+  console.log(`文件的每行内容：${line}`);
+});
+```
+
+每当 `input` 流接收到行尾输入（`\n`、 `\r` 或 `\r\n`）时就会触发 'line' 事件。
+
+```js
+rl.on('line', (input) => {
+  console.log(`接收到：${input}`);
+});
+```
+> 参考： https://juejin.im/post/58fff0e68d6d810058ac005d
+
+> 文档及常用API： http://nodejs.cn/api/fs.html#fs_fs_createreadstream_path_options
+
+## repl
+
+`repl`中文为“交互式解释器”，可以作为独立程序运行，运行JavaScript脚本与查看结果的一个交互程序。
+
+ - 读取 - 读取用户输入，解析输入了Javascript 数据结构并存储在内存中。
+ - 执行 - 执行输入的数据结构
+ - 打印 - 输出结果
+ - 循环 - 循环操作以上步骤直到用户两次按下 ctrl-c 按钮退出。
+
+解释器：
+
+```js
+> 1 + 1
+2
+> const m = 12
+undefined
+> m + 1
+13
+```
+
+所有 REPL 的实例都支持下列特殊命令：
+
+ - .break - 在输入一个多行表达式的过程中，输入 .break 命令（或按下 <ctrl>-C 组合键）将终止表达式的继续输入。
+ - .clear - 重置 REPL 的 context 为一个空对象，并清除当前正输入的所有多行表达式。
+ - .exit - 关闭输入输出流，退出 REPL。
+ - .help - 显示特定命令的帮助列表。
+ - .save - 保存当前 REPL 会话到一个文件： > .save ./file/to/save.js
+ - .load - 读取一个文件到当前 REPL 会话。 > .load ./file/to/load.js
+ - .editor 进入编辑模式（<ctrl>-D 完成， <ctrl>-C 取消）
+
+> 详细查看文档：http://nodejs.cn/api/repl.html
