@@ -69,7 +69,7 @@
 ## [OS](/sections/os.md)
 
 * [`[Doc]` TTY](/sections/os.md#tty)
-* [`[Doc]` OS (操作系统)](/sections/os.md#os-1)
+* [`[Doc]` OS (os模块)](/sections/os.md#os模块)
 * [`[Doc]` Path](/sections/os.md#path)
 * [`[Doc]` 命令行参数](/sections/os.md#命令行参数)
 * [`[Basic]` 负载](/sections/os.md#负载)
@@ -82,7 +82,7 @@
 * [`[Doc]` Errors (异常)](/sections/error.md#errors)
 * [`[Doc]` Domain (域)](/sections/error.md#domain)
 * [`[Doc]` Debugger (调试器)](/sections/error.md#debugger)
-* [`[Doc]` C/C++ 插件](/sections/error.md#c-c++-addon)
+* [`[Doc]` C/C++ 插件](/sections/error.md#C/C++插件)
 * [`[Doc]` V8](/sections/error.md#v8)
 * [`[Point]` 内存快照](/sections/error.md#内存快照)
 * [`[Point]` CPU profiling](/sections/error.md#cpu-profiling)
