@@ -9,4 +9,4 @@
 
 ## 测试方法
 
-饿了么有相关详细描述：https://elemefe.github.io/node-interview/#/sections/zh-cn/test
+饿了么有相关详细描述：https://elemefe.github.io/node-interview/#/sections/zh-cn/test?id=%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95
